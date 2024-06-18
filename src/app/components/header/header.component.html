@@ -1,0 +1,21 @@
+<header>
+    <nav>
+        <a [routerLink]="['/home']" class="contenedor-logo">
+            <img src="./../../../assets/img/icono.png" alt="Logo" width="100px">
+            <h2>Clinica</h2>
+        </a>
+        <div class="nav-items">
+            <div [routerLink]="['/home']" routerLinkActive="active-route">Home</div>
+            <!--<div [routerLink]="['/prueba']" routerLinkActive="active-route">Prueba</div>-->
+            @if (this.isLogged) {
+                <div [routerLink]="['/usuarios']" routerLinkActive="active-route">Usuarios</div>
+                <div [routerLink]="[this.rutaTurnos]" routerLinkActive="active-route">Turnos</div>
+                <div>{{(this.authService.nombreUsuario || 'Usuario') | titlecase}}</div>
+                <button (click)="logout()" class="btn-logout activo">Logout</button>
+            } @else {
+                <div [routerLink]="['/auth/login']" routerLinkActive="active-route">Login</div>
+                <div [routerLink]="['/seleccion-registro']" routerLinkActive="active-route">Registro</div>
+            }
+        </div>
+    </nav>
+</header>

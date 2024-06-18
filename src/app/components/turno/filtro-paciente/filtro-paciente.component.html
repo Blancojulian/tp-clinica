@@ -1,0 +1,48 @@
+<h2 class="titulo">Filtro paciente</h2>
+<mat-stepper linear #stepper (selectionChange)="this.onChange($event)">
+    <mat-step [stepControl]="fgEspecialidades" [editable]="isEditable">
+      <form [formGroup]="fgEspecialidades">
+        <ng-template matStepLabel>
+            {{(this.fgEspecialidades.controls['especialidad'].value || 'Ingrese especialidad') | titlecase}}
+        </ng-template>
+        
+            <mat-chip-listbox formControlName="especialidad" class="chip-list" aria-label="Color selection">
+                @for (e of this.listaEspecialidades; track e) {
+                <mat-chip-option [value]="e">{{e | titlecase}}</mat-chip-option>
+                }
+            </mat-chip-listbox>
+        <div>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="this.fgPaciente" [editable]="isEditable">
+      <form [formGroup]="this.fgPaciente">
+        <ng-template matStepLabel>
+            {{this.tituloStepEspecialista | titlecase }}
+        </ng-template>
+        <!--mat-chip-listbox dentro de mat-form-field -->
+        @if (this.listaPacientes.length <= 0 && this.fgEspecialidades.controls['especialidad'].value) {
+            <p>No tiene pacientes asignados para esta especialidad</p>
+        }
+            <mat-chip-listbox formControlName="paciente" class="chip-list" aria-label="Color selection">
+                @for (p of this.listaPacientes; track p) {
+                <mat-chip-option [value]="p">{{p.apellido | titlecase}} {{p.nombre | titlecase}}</mat-chip-option>
+                }
+            </mat-chip-listbox>
+        <div>
+          <button mat-button matStepperPrevious>Anterior</button>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Completado</ng-template>
+      <div>
+        <button mat-button matStepperPrevious>Anterior</button>
+        <button mat-button (click)="stepper.reset()">Reiniciar</button>
+        <button mat-button (click)="this.onClick($event)">Aceptar</button>
+      </div>
+    </mat-step>
+  </mat-stepper>

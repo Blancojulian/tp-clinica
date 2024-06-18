@@ -1,0 +1,11 @@
+<div class="container">
+    <h2>Especialistas</h2>
+    @if (this.especialidad !== '' && this.listaEspecialistas.length <= 0) {
+        <div>No hay especialista disponible</div>
+        
+    }
+    @for (u of this.listaEspecialistas; track $index) {
+        
+        <div [appSeleccionado]="u === this.especialistaSeleccionado" (click)="this.onClick(u)">{{u.apellido}} {{u.nombre}}</div>
+    }
+</div>

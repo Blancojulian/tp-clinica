@@ -1,0 +1,63 @@
+.opciones{
+    height: 30rem;
+    width: 50rem;
+    display: flex;
+
+}
+.opcion1{
+    width: 50%;
+    background-color: red;
+}
+.opcion2{
+    width: 50%;
+    background-color: blue;
+}
+.div{
+    height: 20rem;
+    width: 50%;
+    background-color: aquamarine;
+}
+mat-card{
+    background-color: #f58d8d;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+.form label, .form input{
+    width: 95%;
+}
+.btn-submit{
+    padding: 1rem;
+    font-size: 1.3rem;
+}
+.is-invalid{
+    border: 2px solid #f58d8d;
+}
+
+.text-invalid{
+    color: #f58d8d;
+}
+
+mat-card-title,
+      mat-card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+@media screen and (min-width: 700px) {
+    .form{
+        margin: 0 auto;
+        width: 60%;
+    }
+    .form input[type='text'], .form input[type='password']{
+        height: 2rem;
+        font-size: 25px;
+    }
+  }

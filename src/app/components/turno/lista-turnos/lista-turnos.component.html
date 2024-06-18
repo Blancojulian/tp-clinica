@@ -1,0 +1,27 @@
+<table>
+    <thead>
+        <tr>
+            <th>Paciente</th>
+            <th>Especialidad</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Duracion</th>
+            <th>Estado turno</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @for (t of this.listaTurnos; track $index) {
+            <tr (click)="this.onClick(t)">
+                <td>{{t.emailPaciente}}</td>
+                <td>{{t.especialidad}}</td>
+                <td>{{t.fecha | timestampFecha | date:'dd/MM/yy'}}</td>
+                <td>{{t.fecha | timestampFecha | date:'h:mm a'}}</td>
+                <td>{{t.duracion}}</td>
+                <td>{{t.estado | titlecase}}</td>
+
+            </tr>
+
+        }
+    </tbody>
+</table>

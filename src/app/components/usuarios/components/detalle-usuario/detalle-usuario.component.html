@@ -1,0 +1,29 @@
+
+
+<mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{usuario.apellido | titlecase}} {{usuario.nombre | titlecase}}</mat-card-title>
+        <mat-card-subtitle>{{usuario.rol | titlecase}}</mat-card-subtitle>
+        <div >
+            <img mat-card-xl-image [src]="usuario.urlImagenUno" >
+            <img mat-card-xl-image [src]="usuario.urlImagenUno" >
+
+        </div>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+        @if (usuario.rol === 'paciente') {
+            <div>Obra Social {{usuario.obraSocial}}</div>
+        
+        } @else if (usuario.rol === 'especialista') {
+            <div>Especialidades: {{usuario.especialidades | listar}}</div>
+        }
+
+        <div>Estado: {{(usuario.fechaAprobado | booleanFecha)? 'Aprobado': 'Pendiente de aprobación'}}</div>
+        <div>Fecha aprobacion: {{((usuario.fechaAprobado | timestampFecha | date:'dd/MM/yyyy'))}}</div>
+        <button (click)="this.aprobarEspecialista()" mat-button type="button">
+            {{(usuario.fechaAprobado | booleanFecha)? 'Desaprobar': 'Aprobar'}}
+        </button>
+    </mat-card-content>
+  </mat-card>

@@ -1,0 +1,64 @@
+.fila{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fila .columna {
+    width: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+.half-width {
+    width: 100%;
+}
+
+
+
+.text-invalid{
+    color: #f58d8d;
+}
+
+.btn-submit{
+    padding: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.centrar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label{
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-card-title{
+    text-align: center;
+}
+
+@media only screen and (min-width: 700px) {
+
+    
+    .fila{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .fila .columna{
+        width: 50%;
+    }
+
+    .half-width {
+        width: 50%;
+    }
+    mat-card{
+        margin: 0 auto;
+        max-width: 35rem;
+    }
+  }

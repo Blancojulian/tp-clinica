@@ -1,0 +1,73 @@
+<h2>Dias disponible</h2>
+
+<h2>email seleccionado: {{this.email}}</h2>
+<label for="duracion">Duracion</label>
+<select name="ducarion" id="" [(ngModel)]="duracion">
+    <option [value]="30" [selected]="true">30 minutos</option>
+    <option [value]="60">1 hora</option>
+</select>
+<!--
+<div class="container">
+
+    <div class="titulo">
+    
+        @for (dia of this.dias; track $index) {
+            <div class="dia">
+                <div>{{dia.fecha}}</div>
+                    <div>{{dia.dia| titlecase}}</div>
+            </div>
+        }
+    </div>
+    <div class="dias">
+        
+        @for (dia of this.dias; track $index) {
+                <div class="dia" >
+                    @for (item of dia.horarios; track $index) {
+                        <div 
+                        [appSeleccionado]="this.diaSeleccionado === dia.numeroDia && this.horaSeleccionada === item.textoHorario"
+                        [attr.disponible]="true" 
+                        [attr.hora]="item.textoHorario" 
+                        [attr.dia]="dia.numeroDia" 
+                        [attr.indexMes]="dia.indexMes">
+                        {{item.textoHorario}}</div>
+                    }
+                </div>
+            
+            
+        }
+    </div>
+</div>-->
+
+<div class="container-tabla">
+    <table>
+        <thead>
+            <tr>
+                <th class="dia">Dia</th>
+                @for (horario of this.dias.at(0)?.horarios; track $index) {
+                    <th class="titulo">
+                        {{horario.textoHorario}}
+                    </th>
+                }
+            </tr>
+        </thead>
+        <tbody (click)="this.onClick($event)">
+            @for (dia of this.dias; track $index) {
+                <tr>
+                    <td class="dia">
+                        <div>{{dia.fecha}}</div>
+                        <div>{{dia.dia| titlecase}}</div>
+                    </td>
+                    @for (horario of dia.horarios; track $index) {
+                        <td 
+                        [appSeleccionado]="this.diaSeleccionado === dia.numeroDia && this.horaSeleccionada === horario.textoHorario"
+                        [attr.disponible]="true" 
+                        [attr.hora]="horario.textoHorario" 
+                        [attr.dia]="dia.numeroDia" 
+                        [attr.indexMes]="dia.indexMes">
+                        {{horario.textoHorario}}</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

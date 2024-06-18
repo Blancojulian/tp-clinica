@@ -1,0 +1,14 @@
+.container-opciones{
+    display: flex;
+    border-radius: 2rem;
+    background-color: #fc5757;
+    overflow: hidden;
+}
+.opcion{
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+}
+
+.seleccionado{
+    background-color: #3ed83e;
+}

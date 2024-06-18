@@ -1,0 +1,42 @@
+.opciones{
+
+    height: 30rem;
+    /*height: 100%;*/
+    width: 100%;
+    display: flex;
+    background-color: aquamarine;
+    overflow: hidden;
+}
+.imagen{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: 30%;
+    cursor: pointer;
+    transition: transform .2s;
+}
+.imagen:active,
+.imagen:hover{
+    transform: scale(103%);
+    box-shadow: rgba(0, 0, 0, 0.66) 0px 10px 36px 0px, rgba(0, 0, 0, 0.46) 0px 0px 0px 1px;
+    text-shadow: 2px 2px #9e9d9d;
+}
+.texto{
+    font-size: 2rem;
+    color: #fff;
+}/*
+.texto:hover{
+    text-shadow: 2px 2px #c4c1c1;
+}*/
+.paciente{
+    background-image: url('./../../../assets/opcion-paciente.jpg');
+}
+
+.especialista{
+    background-image: url('./../../../assets/opcion-especialista.jpg');
+
+}

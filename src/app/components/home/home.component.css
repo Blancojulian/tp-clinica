@@ -1,0 +1,14 @@
+.img-turno{
+  height: 20rem;
+  width: 30rem;
+  background-image: url('./../../../assets/img/turno.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.img-turno h2{
+  color: #fff;
+  font-size: 2rem;
+  text-align: center;
+}

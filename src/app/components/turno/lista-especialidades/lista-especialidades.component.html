@@ -1,0 +1,8 @@
+<div class="container">
+    <h2>Especilidades</h2>
+
+    @for (e of this.especialidadService.listaEspecialidades$ | async; track $index) {
+        
+        <div (click)="this.onClick(e.especialidad)">{{e.especialidad}}</div>
+    }
+</div>

@@ -1,0 +1,181 @@
+<mat-card>
+    <mat-card-title>Registro paciente</mat-card-title>
+    <mat-card-content>
+        <form action="" [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+
+            <div class="fila">
+                    <mat-form-field class="columna">
+                      <mat-label>Nombre</mat-label>
+                      <input formControlName="nombre" matInput #nombre maxlength="50" placeholder="Ingrese nombre">
+                      <mat-hint align="end">{{nombre.value.length}} / 50</mat-hint>
+                      @if (this.controls['nombre'].errors && this.controlarCampo('nombre')) {
+                        <!--<mat-error class="text-invalid">Se requiere nombre</mat-error>-->
+                        <mat-error>
+                            
+                            <!--this.controls['nombre'].errors['maxlength']-->
+                            @if (this.controls['nombre'].errors['maxlength']) {
+                                    El maximo es 50 caracteres
+                            } @else if (this.controls['nombre'].errors['pattern']) {
+                                Nombre invalido, solo se permiten letras
+                            } @else {
+                                Se requiere nombre
+                            }
+                        </mat-error>
+                        
+                    }
+                    </mat-form-field>
+
+                    <mat-form-field class="columna">
+                        <mat-label>Apellido</mat-label>
+                        <input formControlName="apellido" matInput #apellido maxlength="50" placeholder="Ingrese apellido">
+                        <mat-hint align="end">{{apellido.value.length}} / 50</mat-hint>
+                        @if (this.controls['apellido'].errors && this.controlarCampo('apellido')) {
+                          <!--<mat-error class="text-invalid">Se requiere nombre</mat-error>-->
+                          <mat-error>
+                              
+                              <!--this.controls['nombre'].errors['maxlength']-->
+                              @if (this.controls['apellido'].errors['maxlength']) {
+                                El maximo es 50 caracteres
+                              } @else if (this.controls['apellido'].errors['pattern']) {
+                                Nombre invalido, solo se permiten letras
+                              } @else {
+                                Se requiere apellido
+                              }
+                          </mat-error>
+                          
+                      }
+                      </mat-form-field>
+            </div>
+
+            <mat-form-field class="full-width">
+                <mat-label>Email</mat-label>
+                <input formControlName="email" matInput #email maxlength="200" placeholder="Ingrese email">
+                <mat-hint align="end">{{email.value.length}} / 200</mat-hint>
+                @if (this.controls['email'].errors && this.controlarCampo('email')) {
+                  <!--<mat-error class="text-invalid">Se requiere nombre</mat-error>-->
+                  <mat-error>
+                      
+                      <!--this.controls['nombre'].errors['maxlength']-->
+                      @if (this.controls['email'].errors['maxlength']) {
+                              El maximo es 200 caracteres
+                      } @else if (this.controls['email'].errors['pattern']) {
+                          Email invalido, solo se permiten letras
+                      } @else {
+                          Se requiere email
+                      }
+                  </mat-error>
+                  
+              }
+              </mat-form-field>
+
+              <mat-form-field class="full-width">
+                <mat-label>Contraseña</mat-label>
+                <input [type]="hide ? 'password' : 'text'" formControlName="password" matInput #password maxlength="50" placeholder="Ingrese contraseña">
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-hint align="end">{{password.value.length}} / 50</mat-hint>
+                
+                @if (this.controls['password'].errors && this.controlarCampo('password')) {
+                  <mat-error>
+                      
+                      @if (this.controls['password'].errors['maxlength']) {
+                        El maximo es 50 caracteres
+                      } @else if (this.controls['password'].errors['pattern'] && this.controls['password'].errors['minlength']) {
+                        Contraseña invalido, debe tener al menos 8 caracteres, una letra y un numero
+                      } @else if (this.controls['password'].errors['pattern']) {
+                        Contraseña invalido, debe terner al menos una letra y un numero
+                      } @else if (this.controls['password'].errors['minlength']) {
+                        Contraseña invalido, debe tener al menos 8 caracteres
+                      }@else {
+                        Se requiere contraseña
+                      }
+                  </mat-error>
+                  
+              }
+              </mat-form-field>
+
+            <div class="fila">
+                <mat-form-field class="columna">
+                    <mat-label>DNI</mat-label>
+                    <input formControlName="dni" #dni matInput type="text" placeholder="DNI" maxlength="20">
+                    <mat-hint align="end">{{dni.value.length}} / 20</mat-hint>
+                    <mat-error>
+                        @if ( this.controls['dni'].errors && this.controls['dni'].errors['required']) {
+                            Se requiere DNI
+                            
+                        } @else if (this.controls['dni'].errors && this.controls['dni'].errors['pattern']) {
+                            DNI invalido, debe ser solo numeros
+                        }
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="columna">
+                    <mat-label>fecha nacimiento</mat-label>
+                    <input matInput [matDatepicker]="dp" formControlName="fechaNacimiento">
+                    <mat-hint>DD/MM/AAAA</mat-hint>
+                    <mat-error>
+                        @if ( this.controls['fechaNacimiento'].errors && this.controls['fechaNacimiento'].errors['required']) {
+                            Se requiere fecha nacimiento
+                            
+                        } @else if (this.controls['fechaNacimiento'].errors && this.controls['fechaNacimiento'].errors['rango']) {
+                            {{this.controls['fechaNacimiento'].errors['rango']}}
+                        }
+                    </mat-error>
+                    <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+                    <mat-datepicker #dp></mat-datepicker>
+                  </mat-form-field>
+            </div>
+
+            <mat-form-field class="half-width">
+                <mat-label>Obra social</mat-label>
+                <input formControlName="obraSocial" #obraSocial matInput type="text" placeholder="Obra social" maxlength="50">
+                <mat-hint align="end">{{obraSocial.value.length}} / 50</mat-hint>
+                <mat-error>
+                    @if ( this.controls['obraSocial'].errors && this.controls['obraSocial'].errors['required']) {
+                        Se requiere obra social
+                        
+                    } @else if (this.controls['obraSocial'].errors && this.controls['obraSocial'].errors['pattern']) {
+                        Obra social invalida, debe ser solo letras
+                    }
+                </mat-error>
+            </mat-form-field>
+
+            <div class="fila">
+
+                <label class="columna label" for="">Primer imagen</label>
+                <div class="columna">
+                    <app-input-file formControlName="imagenUno" texto="Seleccioner primer imagen"></app-input-file>
+                    @if (this.form.controls['imagenUno'].errors && this.controls['imagenUno'].touched) {
+                        <div class="text-invalid">Formato invalido, solo se acepta jpg o png</div>
+                    }
+
+                </div>
+            </div>
+            <br>
+            <div class="fila">
+
+                <label class="columna label" for="">Segunda imagen</label>
+                <div class="columna">
+                    <app-input-file formControlName="imagenDos" texto="Seleccioner segunda imagen"></app-input-file>
+                    @if (this.form.controls['imagenDos'].errors && this.controls['imagenDos'].touched) {
+                        <div class="text-invalid">Formato invalido, solo se acepta jpg o png</div>
+                    }
+
+                </div>
+            </div>
+            
+            <br>
+            <div class="centrar">
+                <app-captcha formControlName="captcha"></app-captcha>
+                @if (this.form.controls['captcha'].errors && this.controls['captcha'].touched) {
+                    <div class="text-invalid">Captcha invalido</div>
+                }
+                <button [disabled]="this.isLoading" type="submit" mat-button class="btn-submit" name="input-submit">Registrarse</button>
+
+            </div>
+            
+        </form>
+        @if (this.isLoading) {
+            <mat-spinner></mat-spinner>
+        }
+    <mat-card-content>
+<mat-card>

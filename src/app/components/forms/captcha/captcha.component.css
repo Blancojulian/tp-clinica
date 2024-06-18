@@ -1,0 +1,22 @@
+.canvas{
+    height: 3rem;
+    width: 15rem;
+
+    border: 2px solid #000;
+    border-radius: 0.4rem;
+}
+.container-inputs{
+    height: 2rem;
+    width: 15rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+input[type='text'].input-captcha{
+    height: 90%;
+    width: 90%;
+    border-radius: 0.2rem;
+    font-size: 1.2rem;
+    font-weight: 4rem;
+}

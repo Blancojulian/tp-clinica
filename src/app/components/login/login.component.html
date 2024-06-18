@@ -1,0 +1,30 @@
+<mat-card>
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-content>
+        <form class="form" action="" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+            <label>Email</label>
+            <input type="text" id="" formControlName="email" name="email">
+                
+            <!--[ngClass]="{ 'is-invalid': this.form.controls['email'].errors && this.submitted}">
+                @if (this.form.controls['email'].errors && this.submitted) {
+                <div class="text-invalid">Email invalido</div>
+            }-->
+
+            <label>Contraseña</label>
+            <input type="password" id="" formControlName="password" name="password">
+             <!--   [ngClass]="{ 'is-invalid': this.form.controls['email'].errors && this.submitted}">
+            @if (this.form.controls['password'].errors && this.submitted) {
+                <div class="text-invalid">Contraseña invalido</div>
+            }-->
+
+            <button [disabled]="this.isLoading" type="submit" mat-button class="btn-submit" name="input-submit">Login</button>
+
+        </form>
+        <button [disabled]="this.isLoading" mat-button (click)="this.completarDatos()" class="btn-submit">Completar datos</button>
+
+    <mat-card-content>
+        @if (this.isLoading) {
+            <mat-spinner></mat-spinner>
+        }
+<mat-card>

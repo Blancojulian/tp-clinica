@@ -1,0 +1,37 @@
+<h1>Pruebas</h1>
+
+
+<h2>Especialidades</h2>
+@for (item of this.especialidadService.listaEspecialidades$ | async ; track $index) {
+    <div>Especialidad: {{item.especialidad | titlecase}} - Fecha Baja {{item.fechaBaja}}</div>
+}
+
+<mat-form-field>
+    <mat-label>Select</mat-label>
+    <select matNativeControl>
+        @for (especilidad of this.especialidadService.listaEspecialidades$ | async ; track $index) {
+            <option [value]="especilidad" >{{especilidad.especialidad | titlecase}}</option>
+        }
+        
+
+    </select>
+  </mat-form-field>
+
+
+  <mat-form-field>
+    <mat-label>Especialidades</mat-label>
+    <mat-select>
+        @for (especilidad of this.especialidadService.listaEspecialidades$ | async ; track $index) {
+            <mat-option [value]="especilidad" >{{especilidad.especialidad | titlecase}}</mat-option>
+        }
+    </mat-select>
+  </mat-form-field>
+  <button (click)="this.darClick($event)">Click</button>
+  <mat-chip-listbox [(ngModel)]="this.valor" [multiple]="false" class="chip-list" aria-label="Cutest dog breeds">
+    @for (dog of bestBoys; track dog) {
+      <mat-chip-option selected>{{dog}}</mat-chip-option>
+    }
+  </mat-chip-listbox>
+  
+  <app-solicitar-turno></app-solicitar-turno>
+  <app-turnos-paciente></app-turnos-paciente>

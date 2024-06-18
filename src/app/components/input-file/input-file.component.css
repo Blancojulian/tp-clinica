@@ -1,0 +1,44 @@
+.file-select {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.file-select .file-style/*::before*/ {
+    background-color: #5678EF;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    content: 'Seleccionar';
+    /* por defecto */
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+}
+
+.file-select input[type="file"] {
+    opacity: 0;
+    width: 200px;
+    height: 32px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+input[type=file], /* FF, IE7+, chrome (except button) */
+input[type=file]::-webkit-file-upload-button { /* chromes and blink button */
+    cursor: pointer; 
+}
+
+/*
+#src-file1::before {
+    content: 'Seleccionar Archivo 1';
+}
+
+#src-file2::before {
+    content: 'Seleccionar Archivo 2';
+}*/

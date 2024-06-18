@@ -1,0 +1,60 @@
+<!--
+
+    nombre: string;
+    apellido: string;
+    fechaNacimiento: Date
+    dni: string;
+    email: string;
+    password: string;
+    rol: Roles;
+    urlImagenUno: string;
+    userId?: string;
+    urlImagenDos?: string;
+    imagenes?: string[];//array de imagenes o una por una
+    obraSocial?: string;
+    especialidad?: string;
+    fechaEmailVerificado?: Date;
+    fechaAprobado?: Date;
+-->
+
+<table class="tabla">
+
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Edad</th>
+            <th>DNI</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Email Verificado</th>
+            <th>Estado aprobación</th>
+            <th>Obra Social</th>
+            <th>Especialidad</th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (u of usuarioService.listaUsuarios$ | async; track $index) {
+            <tr>
+                <td>{{u.nombre | titlecase}}</td>
+                <td>{{u.apellido | titlecase}}</td>
+                <td>{{u.fechaNacimiento | edadFecha}}</td>
+                <td>{{u.dni}}</td>
+                <td>{{u.email}}</td>
+                <td>{{u.rol | titlecase}}</td>
+                <td>{{u.fechaEmailVerificado}}</td>
+                <td>{{(u.fechaAprobado | booleanFecha)? 'Aprobado': 'Pendiente'}}</td>
+                <td>{{u.obraSocial}}</td>
+                <td>{{u.especialidades | listar}}</td>
+                <td><button (click)="this.onClick(u)" mat-button type="button">Datos</button></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (this.usuarioSeleccionado) {
+    <app-detalle-usuario
+    (onEnviarDato)="this.recibirUsuario($event)"
+    [usuario]="this.usuarioSeleccionado"></app-detalle-usuario>
+}

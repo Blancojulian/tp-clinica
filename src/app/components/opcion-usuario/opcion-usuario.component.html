@@ -1,0 +1,8 @@
+<div class="container-opciones">
+    <!--<div class="opcion">Paciente</div>
+    <div class="opcion">Especialista</div>-->
+    @for (op of this.opciones; track $index) {
+        <div class="opcion" [appSeleccionado]="op === this.opSeleccionada" (click)="this.onClick(op)">{{op | titlecase}}</div>
+
+    }
+</div>

@@ -1,0 +1,26 @@
+.container-tabla{
+    width: 50%;
+    height: 20rem;
+    overflow: scroll;
+}
+table td{
+    border-radius: 20%;
+}
+table tr{
+    position: relative;
+}
+th.titulo{
+    position: sticky;
+    top: 0;
+    background-color: #949597;
+    z-index: 2;
+}
+.dia{
+    position: sticky;
+    left: 0;
+    background-color: #4972be;
+    z-index: 5;
+}
+th.dia{
+    z-index: 10;
+}

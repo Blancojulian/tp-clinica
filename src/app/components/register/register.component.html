@@ -1,0 +1,116 @@
+<mat-card>
+    <mat-card-title>Registro</mat-card-title>
+    <mat-card-content>
+        <form action="" [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+
+            <label>Nombre</label>
+            <input type="text" formControlName="nombre" name="nombre"
+                [ngClass]="{ 'is-invalid': this.controls['nombre'].errors && this.controls['nombre'].touched}">
+
+            @if (this.controls['nombre'].errors && this.controls['nombre'].touched) {
+            <div class="text-invalid">Se requiere nombre</div>
+            <div class="text-invalid">{{this.controls['nombre'].errors['']}}</div>
+            }
+
+            <label>Apellido</label>
+            <input type="text" formControlName="apellido" name="apellido"
+                [ngClass]="{ 'is-invalid': this.controls['apellido'].errors && this.controls['apellido'].touched}">
+
+            @if (this.controls['apellido'].errors && this.controls['apellido'].touched) {
+            <div class="text-invalid">Se requiere apellido</div>
+            }
+
+            <label>Email</label>
+            <input type="text" formControlName="email" name="email"
+                [ngClass]="{ 'is-invalid': this.form.controls['email'].errors && this.controls['email'].touched}">
+
+            @if (this.form.controls['email'].errors && this.controls['email'].touched) {
+            <div class="text-invalid">Email invalido</div>
+            }
+
+            <label>Contraseña</label>
+            <input type="password" formControlName="password" name="password"
+                [ngClass]="{ 'is-invalid': this.controls['password'].errors && this.controls['password'].touched}">
+
+            @if (this.form.controls['password'].errors && this.controls['password'].touched) {
+            <div class="text-invalid">Contraseña invalida
+                <br>
+                Debe terner al menos una letra y un numero
+                <br>
+                Debe tener 8 digitos
+            </div>
+            }
+
+            <app-input-file formControlName="imagenUno"></app-input-file>
+            @if (this.form.controls['imagenUno'].errors && this.controls['imagenUno'].touched) {
+                <div class="text-invalid">Formato imagen invalido, solo se acepta jpg</div>
+            }
+            <app-opcion-usuario 
+            formControlName="rol"
+            (onEnviarDato)="this.recibirDato($event)" 
+            [opciones]="['paciente', 'especialista']"></app-opcion-usuario>
+
+            @if (this.form.controls['rol'].errors && this.controls['rol'].touched) {
+                <div class="text-invalid">Rol invalido</div>
+            }
+
+            @if (this.rol === 'paciente') {
+                <div>Paciente</div>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Obra social</mat-label>
+                    <input formControlName="obraSocial" matInput type="text" placeholder="Obra social">
+                </mat-form-field>
+                @if (this.form.controls['obraSocial'].errors && this.controls['obraSocial'].touched) {
+                    <mat-error>Obra social invalida</mat-error>
+                    
+                }
+
+                <label for="">Segunda imagen</label>
+                <app-input-file formControlName="imagenDos"></app-input-file>
+                @if (this.form.controls['imagenDos'].errors && this.controls['imagenDos'].touched) {
+                    <div class="text-invalid">Formato imagen invalido, solo se acepta jpg</div>
+                }
+            } @else if (this.rol === 'especialista') {
+                <div>Especialista</div>
+
+                <mat-form-field>
+                    <mat-label>Especialidades</mat-label>
+                    <mat-select formControlName="especialidad">
+                        @for (especilidad of this.especialidadService.listaEspecialidades$ | async ; track $index) {
+                            <mat-option [value]="especilidad.especialidad" >{{especilidad.especialidad | titlecase}}</mat-option>
+                        }
+                    </mat-select>
+                    @if (this.form.controls['especialidad'].errors && this.controls['especialidad'].touched) {
+                        
+                        <mat-error>Especialidad invalida</mat-error>
+                    }
+                </mat-form-field>
+                @if (this.form.controls['especialidad'].errors && this.controls['especialidad'].touched) {
+                    <div class="text-invalid">Especialidad invalida</div>
+                    <mat-error>Especialidad invalida</mat-error>
+                }
+                <button mat-raised-button (click)="openDialog()">Agregar especilidad</button>
+            }
+
+            <app-captcha formControlName="captcha"></app-captcha>
+            @if (this.form.controls['captcha'].errors && this.controls['captcha'].touched) {
+                <div class="text-invalid">Captcha invalido</div>
+            }
+            <button [disabled]="this.isLoading" type="submit" mat-button class="btn-submit" name="input-submit">Registrarse</button>
+            
+        </form>
+        @if (this.isLoading) {
+            <mat-spinner></mat-spinner>
+        }
+    <mat-card-content>
+<mat-card>
+
+    
+<br>
+<div class="opciones">
+    <div class="opcion1">opcion1</div>
+    <div class="opcion2">opcion2</div>
+</div>
+
+<div class="div"></div>

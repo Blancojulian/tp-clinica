@@ -1,0 +1,11 @@
+<div>
+    <canvas #canvas class="canvas"></canvas>
+    
+    <div class="container-inputs">
+        <input class="input-captcha" (input)="onChangeInput()" maxlength="5" type="text" name="texto" id="texto" [(ngModel)]="this.texto">
+        <button (click)="onClick($event)" mat-mini-fab color="primary" aria-label="Boton captcha"><!--matTooltip="Basic"-->
+            <mat-icon>refresh</mat-icon>
+        </button>
+        
+    </div>
+</div>

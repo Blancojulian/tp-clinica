@@ -1,0 +1,12 @@
+<div>
+    <button mat-button (click)="this.mostrarFiltro = !this.mostrarFiltro">{{!this.mostrarFiltro ? 'Filtro' : 'Ocultar'}}</button>
+    <button mat-button (click)="this.mostrarTodosLosTurnos()">Mostrar turnos</button>
+    
+  </div>
+  @if (this.mostrarFiltro) {
+    <app-filtro-especialista (onEnviarDato)="this.recibirFiltro($event)"></app-filtro-especialista>
+  
+  }
+  
+  <app-lista-turnos [listaTurnos]="this.listaTurnos"></app-lista-turnos>
+  

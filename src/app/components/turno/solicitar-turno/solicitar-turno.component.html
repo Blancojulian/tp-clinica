@@ -1,0 +1,8 @@
+
+<div class="container">
+    <app-lista-especialidades (onEnviarDato)="this.recibirEspecialidad($event)"></app-lista-especialidades>
+    
+    <app-lista-especialistas [especialidad]="this.especialidadSeleccionada" (onEnviarDato)="this.recibirEmail($event)"></app-lista-especialistas>
+    
+    <app-listado-dias [email]="this.emailSeleccionado"></app-listado-dias>
+</div>

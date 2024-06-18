@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Especialidad</h2>
+<mat-dialog-content>
+  <p>Que Especialidad desea agregar?</p>
+  <mat-form-field>
+    <mat-label>Ingrese texto</mat-label>
+    <input matInput [(ngModel)]="this.texto">
+    
+  </mat-form-field>
+  @if (!this.esTextoValido() && this.texto !== '' ) {
+    <div class="text-invalid">Texto invalido, no se permiten numeros</div>
+  }
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button [disabled]="!this.esTextoValido()" [mat-dialog-close]="this.texto" >Ok</button><!--cdkFocusInitial-->
+</mat-dialog-actions>
